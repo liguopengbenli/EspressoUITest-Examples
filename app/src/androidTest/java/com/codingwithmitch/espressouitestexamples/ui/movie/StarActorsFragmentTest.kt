@@ -13,7 +13,7 @@ import org.junit.Test
 class StarActorsFragmentTest{
 
     @Test
-    fun test_isDirectorsListVisible(){
+    fun test_isStarActorsListVisible(){
         val starActors = arrayListOf<String>("Dwayne Johnson", "Seann William Scott", "Rosario Dawson", "Christopher Walken")
         val fragmentFactory = MovieFragmentFactory()
         val bundle = Bundle()
