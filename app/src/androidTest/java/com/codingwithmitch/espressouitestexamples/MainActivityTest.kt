@@ -11,8 +11,10 @@ import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.intent.Intents.intended
 import androidx.test.espresso.intent.Intents.intending
-import androidx.test.espresso.intent.matcher.IntentMatchers.*
+import androidx.test.espresso.intent.matcher.IntentMatchers.hasAction
+import androidx.test.espresso.intent.matcher.IntentMatchers.hasData
 import androidx.test.espresso.intent.rule.IntentsTestRule
+
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import androidx.test.platform.app.InstrumentationRegistry
@@ -46,17 +48,21 @@ class MainActivityTest{
     }
 
     private fun createGalleryPickActivityResultStub(): ActivityResult {
-        val resources: Resources = InstrumentationRegistry.getInstrumentation().context.resources
-        val imageUri = Uri.parse(
+            val resources: Resources = InstrumentationRegistry.getInstrumentation().context.resources
+             // testing user choseing a image from memory, so here the image is just laucher_background
+            val imageUri = Uri.parse(
             ContentResolver.SCHEME_ANDROID_RESOURCE + "://" +
-                    resources.getResourcePackageName(R.drawable.ic_launcher_background) + '/' +
-                    resources.getResourceTypeName(R.drawable.ic_launcher_background) + '/' +
+                    resources.getResourcePackageName(R.drawable.ic_launcher_background) + "/" +
+                    resources.getResourceTypeName(R.drawable.ic_launcher_background) + "/" +
                     resources.getResourceEntryName(R.drawable.ic_launcher_background)
-        )
-        val resultIntent = Intent()
-        resultIntent.setData(imageUri)
-        return ActivityResult(RESULT_OK, resultIntent)
+
+            )
+            val resultIntent = Intent()
+            resultIntent.setData(imageUri)
+            return ActivityResult(RESULT_OK, resultIntent)
     }
+
+
 }
 
 
