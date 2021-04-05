@@ -15,6 +15,7 @@ import androidx.test.espresso.intent.matcher.IntentMatchers.hasAction
 import androidx.test.espresso.intent.rule.IntentsTestRule
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
+import androidx.test.platform.app.InstrumentationRegistry
 import com.codingwithmitch.espressouitestexamples.ImageViewHasDrawableMatcher.hasDrawable
 import org.hamcrest.CoreMatchers.not
 import org.hamcrest.Matcher
@@ -33,22 +34,26 @@ class MainActivityTest{
     fun  test_cameraIntent() {
 
         // GIVEN
-        val activityResult = createImageCaptureActivityResultStub()
+       val activityResult = createImageCaptureActivityResultStub()
         val expectedIntent: Matcher<Intent> = hasAction(MediaStore.ACTION_IMAGE_CAPTURE)
+        // if the expected intent launched and return the result
         intending(expectedIntent).respondWith(activityResult)
 
         // Execute and Verify
         onView(withId(R.id.image)).check(matches(not(hasDrawable())))
         onView(withId(R.id.button_launch_camera)).perform(click())
-        intended(expectedIntent)
+
+        //intending(expectedIntent)
         onView(withId(R.id.image)).check(matches(hasDrawable()))
+
     }
 
     private fun createImageCaptureActivityResultStub(): ActivityResult? {
         val bundle = Bundle()
         bundle.putParcelable(
-            KEY_IMAGE_DATA, BitmapFactory.decodeResource(
-                intentsTestRule.getActivity().getResources(),
+            KEY_IMAGE_DATA,
+            BitmapFactory.decodeResource(
+                intentsTestRule.activity.resources,
                 R.drawable.ic_launcher_background
             )
         )
@@ -56,6 +61,8 @@ class MainActivityTest{
         resultData.putExtras(bundle)
         return ActivityResult(Activity.RESULT_OK, resultData)
     }
+
+
 }
 
 
