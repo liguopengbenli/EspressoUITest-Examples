@@ -40,13 +40,13 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.core:core-ktx:1.1.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.core:core-ktx:1.3.2'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     testImplementation 'junit:junit:4.12'
 
     // Espresso
-    def androidx_test_espresso = "3.1.0"
+    def androidx_test_espresso = "3.3.0"
     androidTestImplementation "androidx.test.espresso:espresso-core:$androidx_test_espresso"
     androidTestImplementation "androidx.test.espresso:espresso-contrib:$androidx_test_espresso"
 
@@ -55,15 +55,15 @@ dependencies {
     androidTestImplementation "io.mockk:mockk-android:$mockk_version"
 
     // androidx.test
-    def androidx_test = "1.1.0"
+    def androidx_test = "1.0.0"
     androidTestImplementation "androidx.test:runner:$androidx_test"
     androidTestImplementation "androidx.test:core:$androidx_test"
-    androidTestImplementation "androidx.test.ext:junit-ktx:$androidx_test"
+    //androidTestImplementation "androidx.test.ext:junit-ktx:$androidx_test"
 
     // androidx.fragment
-    def fragment_version = "1.2.0-rc01" // must use for new factory stuff
+    def fragment_version = "1.3.3" // must use for new factory stuff
     debugImplementation "androidx.fragment:fragment-testing:$fragment_version"
-    implementation "androidx.fragment:fragment:$fragment_version"
+    implementation "androidx.fragment:fragment-ktx:$fragment_version"
 
 
     //glide
